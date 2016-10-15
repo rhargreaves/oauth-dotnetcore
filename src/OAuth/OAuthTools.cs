@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -37,7 +38,7 @@ namespace OAuth
         {
 #if !SILVERLIGHT && !WINRT
             var bytes = new byte[4];
-            _rng.GetNonZeroBytes(bytes);
+            _rng.GetBytes(bytes);
             _random = new Random(BitConverter.ToInt32(bytes, 0));
 #else
             _random = new Random();
@@ -222,7 +223,7 @@ namespace OAuth
 
         private static bool EqualsIgnoreCase(string left, string right)
         {
-#if WINRT
+#if WINRT || DOTNETCORE
             return CultureInfo.InvariantCulture.CompareInfo.Compare(left, right, CompareOptions.IgnoreCase) == 0;
 #else
             return String.Compare(left, right, StringComparison.InvariantCultureIgnoreCase) == 0;
