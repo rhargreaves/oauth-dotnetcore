@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0-*",
+  "version": "1.0.4-*",
   "dependencies": {
     "NETStandard.Library": "1.6.0",
     "System.Collections.Specialized": "4.0.1",
@@ -14,6 +14,20 @@
     "define": [ "DOTNETCORE" ],
     "compile": {
       "include": "../OAuth/*.cs"
+    }
+  },
+  "packOptions": {
+    "summary": "An implementation of OAuth 1.0a for .NET Core based on Daniel Crenna's vaulted OAuth library",
+    "tags": ["oauth", "dotnetcore"],
+    "owners": ["Robert Hargreaves"],
+    "releaseNotes": "An implementation of OAuth 1.0a for .NET Core based on Daniel Crenna's vaulted OAuth library",
+    "iconUrl": "http://apitize.com.s3.amazonaws.com/logo_oauth.png",
+    "projectUrl": "http://github.com/rhargreaves/oauth-dotnetcore",
+    "licenseUrl": "https://github.com/rhargreaves/oauth-dotnetcore/blob/master/LICENSE",
+    "requireLicenseAcceptance": false,
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/rhargreaves/oauth-dotnetcore"
     }
   }
 }
