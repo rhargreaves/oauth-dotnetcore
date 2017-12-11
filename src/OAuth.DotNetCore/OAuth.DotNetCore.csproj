@@ -13,7 +13,6 @@
     <PackageLicenseUrl>https://github.com/rhargreaves/oauth-dotnetcore/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>http://github.com/rhargreaves/oauth-dotnetcore</RepositoryUrl>
-    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
     <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
