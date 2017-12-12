@@ -2,5 +2,8 @@ language: csharp
 mono: none
 dotnet: 2.1.2
 dist: trusty
+sudo: required
+services:
+  - docker
 script:
  - make
