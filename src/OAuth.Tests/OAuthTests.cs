@@ -4,6 +4,7 @@ using NUnit.Framework;
 
 namespace OAuth.Tests
 {
+	[Ignore("Requires external OAuth key and secret")]
     [TestFixture]
     public class OAuthTests
     {
