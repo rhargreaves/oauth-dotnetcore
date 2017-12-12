@@ -357,14 +357,13 @@ namespace OAuth
                 tokenSecret = String.Empty;
             }
 
-            consumerSecret = UrlEncodeRelaxed(consumerSecret);
-            tokenSecret = UrlEncodeRelaxed(tokenSecret);
-
             string signature;
             switch (signatureMethod)
             {
                 case OAuthSignatureMethod.HmacSha1:
                     {
+                        consumerSecret = UrlEncodeRelaxed(consumerSecret);
+                        tokenSecret = UrlEncodeRelaxed(tokenSecret);
                         var key = string.Concat(consumerSecret, "&", tokenSecret);
 #if WINRT
                         IBuffer keyMaterial = CryptographicBuffer.ConvertStringToBinary(key, _encoding);
@@ -382,8 +381,11 @@ namespace OAuth
 
                         break;
                     }
+                case OAuthSignatureMethod.RsaSha1:
+                    signature = TextSigner.SignWithRsaSha1(signatureBase, consumerSecret);
+                    break;
                 default:
-                    throw new NotImplementedException("Only HMAC-SHA1 is currently supported.");
+                    throw new NotImplementedException("Only HMAC-SHA1 and RSA-SHA1 signatures are currently supported.");
             }
 
             var result = signatureTreatment == OAuthSignatureTreatment.Escaped
