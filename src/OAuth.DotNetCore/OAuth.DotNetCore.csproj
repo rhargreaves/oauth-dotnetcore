@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <VersionPrefix>1.0.4</VersionPrefix>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <DefineConstants>$(DefineConstants);DOTNETCORE</DefineConstants>
     <AssemblyName>OAuth.DotNetCore</AssemblyName>
     <PackageId>OAuth.DotNetCore</PackageId>
