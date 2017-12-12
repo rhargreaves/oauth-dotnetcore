@@ -3,3 +3,5 @@ mono: none
 dotnet: 2.1.2
 dist: trusty
 solution: OAuth.sln
+script:
+ - dotnet restore
