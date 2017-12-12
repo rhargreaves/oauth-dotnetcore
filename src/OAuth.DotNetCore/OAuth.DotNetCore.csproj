@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <VersionPrefix>1.0.4</VersionPrefix>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <DefineConstants>$(DefineConstants);DOTNETCORE</DefineConstants>
+    <AssemblyName>OAuth.DotNetCore</AssemblyName>
+    <PackageId>OAuth.DotNetCore</PackageId>
+    <PackageTags>oauth;dotnetcore</PackageTags>
+    <PackageReleaseNotes>An implementation of OAuth 1.0a for .NET Core based on Daniel Crenna's vaulted OAuth library</PackageReleaseNotes>
+    <PackageIconUrl>http://apitize.com.s3.amazonaws.com/logo_oauth.png</PackageIconUrl>
+    <PackageProjectUrl>http://github.com/rhargreaves/oauth-dotnetcore</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/rhargreaves/oauth-dotnetcore/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>http://github.com/rhargreaves/oauth-dotnetcore</RepositoryUrl>
+    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
+    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\OAuth\*.cs" Exclude="bin\**;obj\**;**\*.xproj;packages\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Collections.Specialized" Version="4.0.1" />
+    <PackageReference Include="System.Runtime.Serialization.Formatters" Version="4.0.0-rc3-24212-01" />
+  </ItemGroup>
+
+</Project>
