@@ -2,7 +2,7 @@ version: 1.0.{build}
 image: Visual Studio 2017
 platform: Any CPU
 before_build:
-- cmd: dotnet restore
+- cmd: dotnet restore OAuth.sln
 build:
   parallel: true
   verbosity: minimal
