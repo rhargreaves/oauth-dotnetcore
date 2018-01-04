@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <VersionPrefix>1.0.4</VersionPrefix>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <DefineConstants>$(DefineConstants);DOTNETCORE</DefineConstants>
     <AssemblyName>OAuth.DotNetCore</AssemblyName>
     <PackageId>OAuth.DotNetCore</PackageId>
@@ -13,8 +13,6 @@
     <PackageLicenseUrl>https://github.com/rhargreaves/oauth-dotnetcore/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>http://github.com/rhargreaves/oauth-dotnetcore</RepositoryUrl>
-    <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
-    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
@@ -22,11 +20,6 @@
 
   <ItemGroup>
     <Compile Include="..\OAuth\*.cs" Exclude="bin\**;obj\**;**\*.xproj;packages\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.Collections.Specialized" Version="4.3.0" />
-    <PackageReference Include="System.Runtime.Serialization.Formatters" Version="4.3.0" />
   </ItemGroup>
 
 </Project>
