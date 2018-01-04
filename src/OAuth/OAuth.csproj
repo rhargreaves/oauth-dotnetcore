@@ -52,6 +52,8 @@
     <Compile Include="OAuthRequest.cs" />
     <Compile Include="OAuthTools.cs" />
     <Compile Include="OAuthRequestType.cs" />
+    <Compile Include="RsaPrivateKeyParser.cs" />
+    <Compile Include="TextSigner.cs" />
     <Compile Include="WebParameter.cs" />
     <Compile Include="WebParameterCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

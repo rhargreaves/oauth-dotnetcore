@@ -61,6 +61,9 @@
     <Compile Include="..\OAuth\OAuthTools.cs">
       <Link>OAuthTools.cs</Link>
     </Compile>
+    <Compile Include="..\OAuth\TextSigner.cs">
+      <Link>TextSigner.cs</Link>
+    </Compile>
     <Compile Include="..\OAuth\WebParameter.cs">
       <Link>WebParameter.cs</Link>
     </Compile>
