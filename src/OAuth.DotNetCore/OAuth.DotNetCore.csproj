@@ -21,4 +21,5 @@
   <ItemGroup>
     <Compile Include="..\OAuth\*.cs" Exclude="bin\**;obj\**;**\*.xproj;packages\**" />
   </ItemGroup>
+
 </Project>

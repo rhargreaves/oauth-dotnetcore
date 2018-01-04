@@ -1,0 +1,8 @@
+version: 1.0.4.{build}
+image: Visual Studio 2017
+platform: Any CPU
+before_build:
+- cmd: nuget restore src/OAuth.sln
+build:
+  parallel: true
+  verbosity: minimal
