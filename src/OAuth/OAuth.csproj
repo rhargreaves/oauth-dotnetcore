@@ -57,6 +57,7 @@
     <Compile Include="WebParameter.cs" />
     <Compile Include="WebParameterCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="oauth.snk" />
