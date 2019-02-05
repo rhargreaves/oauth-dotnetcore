@@ -7,6 +7,6 @@ pack:
 	$(DOTNET) pack src/OAuth.DotNetCore/OAuth.DotNetCore.csproj -c Release
 
 nuget-push:
-	$(DOTNET) nuget push src/OAuth.DotNetCore/bin/Release/OAuth.DotNetCore.2.0.0.nupkg -k $(NUGET_KEY) -s nuget.org
+	$(DOTNET) nuget push src/OAuth.DotNetCore/bin/Release/OAuth.DotNetCore.2.1.0.nupkg -k $(NUGET_KEY) -s nuget.org
 
 .PHONY: build pack nuget-push
