@@ -1,4 +1,4 @@
-# OAuth [![Build Status](https://travis-ci.org/rhargreaves/oauth-dotnetcore.svg?branch=master)](https://travis-ci.org/rhargreaves/oauth-dotnetcore) [![Build status](https://ci.appveyor.com/api/projects/status/qh8n91w8jhv2cv6p?svg=true)](https://ci.appveyor.com/project/rhargreaves/oauth-dotnetcore)
+# OAuth [![Build Status](https://travis-ci.org/rhargreaves/oauth-dotnetcore.svg?branch=master)](https://travis-ci.org/rhargreaves/oauth-dotnetcore) [![Build status](https://ci.appveyor.com/api/projects/status/mwdx18uaoo6dmge1/branch/master?svg=true)](https://ci.appveyor.com/project/rhargreaves/oauth-dotnetcore/branch/master)
 
 ## A public domain OAuth library
 
