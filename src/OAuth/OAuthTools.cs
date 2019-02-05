@@ -275,7 +275,9 @@ namespace OAuth
 
             // Separating &'s are not URL encoded
             var requestMethod = string.Concat(method.ToUpper(), "&");
-            var requestUrl = string.Concat(UrlEncodeRelaxed(ConstructRequestUrl(new Uri(url))), "&");
+            var uri = new Uri(url);
+            var requestUrl = string.Concat(UrlEncodeRelaxed(ConstructRequestUrl(uri)), "&");
+            parameters.AddRange(WebUtils.ParseQueryString(uri));
             var requestParameters = UrlEncodeRelaxed(NormalizeRequestParameters(parameters));
             
             sb.Append(requestMethod);
