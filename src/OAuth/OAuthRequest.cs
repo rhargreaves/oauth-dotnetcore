@@ -107,12 +107,25 @@ namespace OAuth
 
             parameters.Sort((l, r) => l.Name.CompareTo(r.Name));
 
-            foreach (var parameter in parameters.Where(parameter =>
+            if (Type == OAuthRequestType.ProtectedResource)
+            {
+                foreach (var parameter in parameters.Where(parameter =>
+                                                        !IsNullOrBlank(parameter.Name) &&
+                                                        !IsNullOrBlank(parameter.Value) &&
+                                                        (parameter.Name.StartsWith("oauth_") || parameter.Name.StartsWith("x_auth_"))  || parameter.Name == "oauth_token" && parameter.Value != null))
+                {
+                    sb.AppendFormat("{0}=\"{1}\",", parameter.Name, parameter.Value);
+                }
+            }
+            else
+            { 
+                foreach (var parameter in parameters.Where(parameter =>
                                                        !IsNullOrBlank(parameter.Name) &&
                                                        !IsNullOrBlank(parameter.Value) &&
-                                                       (parameter.Name.StartsWith("oauth_") || parameter.Name.StartsWith("x_auth_"))))
-            {
-                sb.AppendFormat("{0}=\"{1}\",", parameter.Name, parameter.Value);
+                                                           (parameter.Name.StartsWith("oauth_") || parameter.Name.StartsWith("x_auth_"))))
+                {
+                    sb.AppendFormat("{0}=\"{1}\",", parameter.Name, parameter.Value);
+                }
             }
 
             sb.Remove(sb.Length - 1, 1);
@@ -445,9 +458,13 @@ namespace OAuth
                                          new WebParameter("oauth_version", Version ?? "1.0")
                                      };
 
-            if (!IsNullOrBlank(Token))
+            if (Type == OAuthRequestType.ProtectedResource)
             {
-                authParameters.Add(new WebParameter("oauth_token", Token));
+                if (Token != null) { authParameters.Add(new WebParameter("oauth_token", Token)); }
+            }
+            else
+            {
+                if (!IsNullOrBlank(Token)) { authParameters.Add(new WebParameter("oauth_token", Token)); }
             }
 
             if (!IsNullOrBlank(CallbackUrl))
