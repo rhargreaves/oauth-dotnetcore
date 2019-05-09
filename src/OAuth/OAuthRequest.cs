@@ -243,13 +243,13 @@ namespace OAuth
 
         #region Static Helpers
 
-        public static OAuthRequest ForRequestToken(string consumerKey, string consumerSecret)
+        public static OAuthRequest ForRequestToken(string consumerKey, string consumerSecret, OAuthSignatureMethod oAuthSignatureMethod = OAuthSignatureMethod.HmacSha1)
         {
             var credentials = new OAuthRequest
             {
                 Method = "GET",
                 Type = OAuthRequestType.RequestToken,
-                SignatureMethod = OAuthSignatureMethod.HmacSha1,
+                SignatureMethod = oAuthSignatureMethod,
                 SignatureTreatment = OAuthSignatureTreatment.Escaped,
                 ConsumerKey = consumerKey,
                 ConsumerSecret = consumerSecret
@@ -257,20 +257,20 @@ namespace OAuth
             return credentials;
         }
 
-        public static OAuthRequest ForRequestToken(string consumerKey, string consumerSecret, string callbackUrl)
+        public static OAuthRequest ForRequestToken(string consumerKey, string consumerSecret, string callbackUrl, OAuthSignatureMethod oAuthSignatureMethod = OAuthSignatureMethod.HmacSha1)
         {
-            var credentials = ForRequestToken(consumerKey, consumerSecret);
+            var credentials = ForRequestToken(consumerKey, consumerSecret, null, oAuthSignatureMethod: oAuthSignatureMethod);
             credentials.CallbackUrl = callbackUrl;
             return credentials;
         }
 
-        public static OAuthRequest ForAccessToken(string consumerKey, string consumerSecret, string requestToken, string requestTokenSecret)
+        public static OAuthRequest ForAccessToken(string consumerKey, string consumerSecret, string requestToken, string requestTokenSecret, OAuthSignatureMethod oAuthSignatureMethod = OAuthSignatureMethod.HmacSha1)
         {
             var credentials = new OAuthRequest
             {
                 Method = "GET",
                 Type = OAuthRequestType.AccessToken,
-                SignatureMethod = OAuthSignatureMethod.HmacSha1,
+                SignatureMethod = oAuthSignatureMethod,
                 SignatureTreatment = OAuthSignatureTreatment.Escaped,
                 ConsumerKey = consumerKey,
                 ConsumerSecret = consumerSecret,
@@ -280,35 +280,35 @@ namespace OAuth
             return credentials;
         }
 
-        public static OAuthRequest ForAccessToken(string consumerKey, string consumerSecret, string requestToken, string requestTokenSecret, string verifier)
+        public static OAuthRequest ForAccessToken(string consumerKey, string consumerSecret, string requestToken, string requestTokenSecret, string verifier, OAuthSignatureMethod oAuthSignatureMethod = OAuthSignatureMethod.HmacSha1)
         {
-            var credentials = ForAccessToken(consumerKey, consumerSecret, requestToken, requestTokenSecret);
+            var credentials = ForAccessToken(consumerKey, consumerSecret, requestToken, requestTokenSecret, oAuthSignatureMethod);
             credentials.Verifier = verifier;
             return credentials;
         }
 
-        public static OAuthRequest ForAccessTokenRefresh(string consumerKey, string consumerSecret, string accessToken, string accessTokenSecret, string sessionHandle)
+        public static OAuthRequest ForAccessTokenRefresh(string consumerKey, string consumerSecret, string accessToken, string accessTokenSecret, string sessionHandle, OAuthSignatureMethod oAuthSignatureMethod = OAuthSignatureMethod.HmacSha1)
         {
-            var credentials = ForAccessToken(consumerKey, consumerSecret, accessToken, accessTokenSecret);
+            var credentials = ForAccessToken(consumerKey, consumerSecret, accessToken, accessTokenSecret, oAuthSignatureMethod);
             credentials.SessionHandle = sessionHandle;
             return credentials;
         }
 
-        public static OAuthRequest ForAccessTokenRefresh(string consumerKey, string consumerSecret, string accessToken, string accessTokenSecret, string sessionHandle, string verifier)
+        public static OAuthRequest ForAccessTokenRefresh(string consumerKey, string consumerSecret, string accessToken, string accessTokenSecret, string sessionHandle, string verifier, OAuthSignatureMethod oAuthSignatureMethod = OAuthSignatureMethod.HmacSha1)
         {
-            var credentials = ForAccessToken(consumerKey, consumerSecret, accessToken, accessTokenSecret);
+            var credentials = ForAccessToken(consumerKey, consumerSecret, accessToken, accessTokenSecret, oAuthSignatureMethod);
             credentials.SessionHandle = sessionHandle;
             credentials.Verifier = verifier;
             return credentials;
         }
 
-        public static OAuthRequest ForClientAuthentication(string consumerKey, string consumerSecret, string username, string password)
+        public static OAuthRequest ForClientAuthentication(string consumerKey, string consumerSecret, string username, string password, OAuthSignatureMethod oAuthSignatureMethod = OAuthSignatureMethod.HmacSha1)
         {
             var credentials = new OAuthRequest
             {
                 Method = "GET",
                 Type = OAuthRequestType.ClientAuthentication,
-                SignatureMethod = OAuthSignatureMethod.HmacSha1,
+                SignatureMethod = oAuthSignatureMethod,
                 SignatureTreatment = OAuthSignatureTreatment.Escaped,
                 ConsumerKey = consumerKey,
                 ConsumerSecret = consumerSecret,
@@ -319,13 +319,13 @@ namespace OAuth
             return credentials;
         }
 
-        public static OAuthRequest ForProtectedResource(string method, string consumerKey, string consumerSecret, string accessToken, string accessTokenSecret)
+        public static OAuthRequest ForProtectedResource(string method, string consumerKey, string consumerSecret, string accessToken, string accessTokenSecret, OAuthSignatureMethod oAuthSignatureMethod = OAuthSignatureMethod.HmacSha1)
         {
             var credentials = new OAuthRequest
             {
                 Method = method ?? "GET",
                 Type = OAuthRequestType.ProtectedResource,
-                SignatureMethod = OAuthSignatureMethod.HmacSha1,
+                SignatureMethod = oAuthSignatureMethod,
                 SignatureTreatment = OAuthSignatureTreatment.Escaped,
                 ConsumerKey = consumerKey,
                 ConsumerSecret = consumerSecret,
