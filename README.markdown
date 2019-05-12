@@ -127,7 +127,7 @@ client.RequestUrl = "https://api.twitter.com/account/verify_credentials.json";
 var auth = client.GetAuthorizationHeader();
 
 // Make the request to the third-party site and provide the correct echo headers
-HttpWebRequest echo = (HttpWebRequest) WebRequest.Create("http://api.twitpic.com);
+HttpWebRequest echo = (HttpWebRequest) WebRequest.Create("http://api.twitpic.com");
 echo.Headers.Add("X-Auth-Service-Provider", client.RequestUrl);
 echo.Headers.Add("X-Verify-Credentials-Authorization", auth);
 ```
