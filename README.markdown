@@ -122,7 +122,7 @@ site.
 
 ```csharp
 // Get an OAuthRequest instance for the main site's echo endpoint
-OAuthRequest client = OAuthRequest.ForProtectedResource("CONSUMER_KEY", "CONSUMER_SECRET", "ACCESS_TOKEN", "ACCESS_TOKEN_SECRET");
+OAuthRequest client = OAuthRequest.ForProtectedResource("GET", "CONSUMER_KEY", "CONSUMER_SECRET", "ACCESS_TOKEN", "ACCESS_TOKEN_SECRET");
 client.RequestUrl = "https://api.twitter.com/account/verify_credentials.json";
 var auth = client.GetAuthorizationHeader();
 
@@ -130,4 +130,23 @@ var auth = client.GetAuthorizationHeader();
 HttpWebRequest echo = (HttpWebRequest) WebRequest.Create("http://api.twitpic.com); 
 echo.Headers.Add("X-Auth-Service-Provider", client.RequestUrl);
 echo.Headers.Add("X-Verify-Credentials-Authorization", auth);
+```
+
+#### OAuth 1-Legged
+
+If application need to make a request again API with only one authentication requested, this is supported. In the terms of OAuth 1.0a is this called as 1-Legged flow. What maybe can be important here is to set ```accessToken``` to ```string.Empty``` otherwise the _oauth_token_ will be omited at all. OAuth specification expect this parameter to be set and signed.
+
+```csharp
+// Get authorization header for signed request agains API
+OAuthRequest client = OAuthRequest.ForProtectedResource("GET", "CONSUMER_KEY", "CONSUMER_SECRET", string.Empty, null, OAuth.OAuthSignatureMethod.RsaSha1);
+var requestUrl = $"https://SOME_BASE_URL/jira/rest/api/2/search?jql=assignee=SOME_USER_ID&user_id=SOME_USER_ID";
+client.RequestUrl = requestUrl;
+string authorizationHeader = client.GetAuthorizationHeader();
+
+using (var httpClient = new HttpClient())
+{
+    //authorizationHeader.Remove(0,6) => Because in authorizationHeader is already 'OAuth' string at the beginning we remove it, otherwise the authorization will be header incorrect
+    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("OAuth", authorizationHeader.Remove(0,6));
+    string result = await httpClient.GetStringAsync(requestUrl);
+}
 ```
