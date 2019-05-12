@@ -1,5 +1,6 @@
 ﻿using System.Configuration;
 using System.Net;
+using Microsoft.Extensions.Configuration;
 using NUnit.Framework;
 
 namespace OAuth.Tests
@@ -16,8 +17,11 @@ namespace OAuth.Tests
         [SetUp]
         public void SetUp()
         {
-            _consumerKey = ConfigurationManager.AppSettings["ConsumerKey"];
-            _consumerSecret = ConfigurationManager.AppSettings["ConsumerSecret"];
+            var config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", false, false)
+                .Build();
+            _consumerKey = config["ConsumerKey"];
+            _consumerSecret = config["ConsumerSecret"];
         }
 
         [Test]
