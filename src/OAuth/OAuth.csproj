@@ -13,18 +13,12 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <Version>2.2.0</Version>
+    <Version>3.0.0</Version>
     <TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
-    <AssemblyName>OAuth.DotNetCore</AssemblyName>
   </PropertyGroup>
   
-  <ItemGroup>
-    <Reference Include="System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>..\..\..\..\..\..\Library\Frameworks\Mono.framework\Versions\5.18.0\lib\mono\4.0-api\System.Web.dll</HintPath>
-    </Reference>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
+    <Reference Include="System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   </ItemGroup>
   
-  <ItemGroup>
-    <Folder Include="Properties" />
-  </ItemGroup>
 </Project>
