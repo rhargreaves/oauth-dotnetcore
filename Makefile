@@ -1,4 +1,9 @@
-DOTNET=docker run -v $(shell pwd):/app -w /app -it microsoft/dotnet:2.0-sdk dotnet
+DOTNET=docker run \
+	-v $(shell pwd):/app \
+	-w /app \
+	-it \
+	mcr.microsoft.com/dotnet/core/sdk:2.2-alpine \
+	dotnet
 CSPROJ=src/OAuth.DotNetCore/OAuth.DotNetCore.csproj
 VERSION=2.2.0
 
@@ -7,6 +12,11 @@ build:
 
 pack: build
 	$(DOTNET) pack $(CSPROJ) -c Release
+
+test:
+	$(DOTNET) test \
+		-f netcoreapp2.2 \
+		tests/OAuth.UnitTests/OAuth.UnitTests.csproj 
 
 nuget-push: pack
 	$(DOTNET) nuget push \
