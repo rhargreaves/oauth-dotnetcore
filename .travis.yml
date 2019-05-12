@@ -6,4 +6,4 @@ sudo: required
 services:
   - docker
 script:
- - make
+ - make test
