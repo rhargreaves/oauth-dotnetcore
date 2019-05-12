@@ -19,14 +19,6 @@ namespace OAuth.Tests
             Assert.AreEqual(expectedQueryParametersCount, WebUtils.ParseQueryString(new Uri(url)).Count());
         }
 
-        [TestCase("https://www.google.com/?")]
-        [TestCase("https://www.google.com/?a=b&c=d&e=f&")]
-        public void ParseQueryStringThrowsForInvalidQueryString(string invalidUrl)
-        {
-            // ReSharper disable once ReturnValueOfPureMethodIsNotUsed
-            Assert.Throws<ArgumentException>(() => WebUtils.ParseQueryString(new Uri(invalidUrl)).ToList());
-        }
-
         [TestCase(null)]
         public void ParseQueryStringThrowsArgumentNullException(string invalidUrl)
         {

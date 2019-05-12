@@ -13,21 +13,8 @@ namespace OAuth
             if (uri is null) { throw new ArgumentNullException(nameof(uri)); }
 
             NameValueCollection parsedQuery = HttpUtility.ParseQueryString(uri.Query);
-
-            var uriDoesNotHaveValidQueryStringExceptionMessage = "Uri does not have valid query string";
-            if (uri.Query.Any() && parsedQuery.Count == 0)
-            {
-                throw new ArgumentException(uriDoesNotHaveValidQueryStringExceptionMessage);
-            }
-
             var queryStringParameters =
                 parsedQuery.AllKeys.SelectMany(parsedQuery.GetValues, (key, value) => new {key, value});
-
-            // ReSharper disable once PossibleMultipleEnumeration
-            if (queryStringParameters.Any(queryStringParameter => queryStringParameter.key == null))
-            {
-                throw new ArgumentException(uriDoesNotHaveValidQueryStringExceptionMessage);
-            }
 
             // ReSharper disable once PossibleMultipleEnumeration
             foreach (var param in queryStringParameters)
