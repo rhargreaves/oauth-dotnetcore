@@ -134,10 +134,9 @@ echo.Headers.Add("X-Verify-Credentials-Authorization", auth);
 
 #### OAuth 1-Legged
 
-If application need to make a request again API with only one authentication requested, this is supported. In the terms of OAuth 1.0a is this called as 1-Legged flow. What maybe can be important here is to set ```accessToken``` to ```string.Empty``` otherwise the _oauth_token_ will be omited at all. OAuth specification expect this parameter to be set and signed.
+If the application needs to make a request without the `oauth_token` set, but included as an empty token in the request (`oauth_token=`) you can set `accessToken` to `string.Empty`. When `accessToken` is `null`, it is not included or signed.
 
 ```csharp
-// Get authorization header for signed request agains API
 OAuthRequest client = OAuthRequest.ForProtectedResource("GET", "CONSUMER_KEY", "CONSUMER_SECRET", string.Empty, null, OAuth.OAuthSignatureMethod.RsaSha1);
 var requestUrl = $"https://SOME_BASE_URL/jira/rest/api/2/search?jql=assignee=SOME_USER_ID&user_id=SOME_USER_ID";
 client.RequestUrl = requestUrl;
