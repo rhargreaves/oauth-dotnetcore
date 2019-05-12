@@ -137,15 +137,16 @@ echo.Headers.Add("X-Verify-Credentials-Authorization", auth);
 If the application needs to make a request without the `oauth_token` set, but included as an empty token in the request (`oauth_token=`) you can set `accessToken` to `string.Empty`. When `accessToken` is `null`, it is not included or signed.
 
 ```csharp
-OAuthRequest client = OAuthRequest.ForProtectedResource("GET", "CONSUMER_KEY", "CONSUMER_SECRET", string.Empty, null, OAuth.OAuthSignatureMethod.RsaSha1);
-var requestUrl = $"https://SOME_BASE_URL/jira/rest/api/2/search?jql=assignee=SOME_USER_ID&user_id=SOME_USER_ID";
+var client = OAuthRequest.ForProtectedResource("GET", "CONSUMER_KEY",
+    "CONSUMER_SECRET", string.Empty, null, OAuth.OAuthSignatureMethod.RsaSha1);
+var requestUrl = 
+    $"https://SOME_BASE_URL/jira/rest/api/2/search?jql=assignee=SOME_USER_ID&user_id=SOME_USER_ID";
 client.RequestUrl = requestUrl;
-string authorizationHeader = client.GetAuthorizationHeader();
-
+var authorizationHeader = client.GetAuthorizationHeader();
 using (var httpClient = new HttpClient())
 {
-    //authorizationHeader.Remove(0,6) => Because in authorizationHeader is already 'OAuth' string at the beginning we remove it, otherwise the authorization will be header incorrect
-    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("OAuth", authorizationHeader.Remove(0,6));
+    httpClient.DefaultRequestHeaders.Authorization = 
+        new AuthenticationHeaderValue("OAuth", authorizationHeader.Remove(0,6)); // Remove "OAuth "
     string result = await httpClient.GetStringAsync(requestUrl);
 }
 ```
