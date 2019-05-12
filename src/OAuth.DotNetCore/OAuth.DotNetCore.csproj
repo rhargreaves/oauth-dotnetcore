@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
     <DefineConstants>$(DefineConstants);DOTNETCORE</DefineConstants>
     <AssemblyName>OAuth.DotNetCore</AssemblyName>
     <PackageId>OAuth.DotNetCore</PackageId>
@@ -16,9 +15,16 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <Version>2.2.0</Version>
+    <TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Include="..\OAuth\*.cs" Exclude="bin\**;obj\**;**\*.xproj;packages\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\..\..\Library\Frameworks\Mono.framework\Versions\5.18.0\lib\mono\4.0-api\System.Web.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

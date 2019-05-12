@@ -26,6 +26,7 @@ D3yw8+j8kSgGSLuydIGPxHq0JYqTVdkIbA+agBZOiNRQ
 -----END RSA PRIVATE KEY-----
 ";
 
+            #if NETSTANDARD2_0
             [Test]
             public void SignsWithRsaSha1()
             {
@@ -35,6 +36,7 @@ D3yw8+j8kSgGSLuydIGPxHq0JYqTVdkIbA+agBZOiNRQ
                     "bh2Ljy82v5FSD0PQaKDPDwTHolA6JrBfQPciDLTlR0nNodgFja%2Fw7UmLJuxuARNerX7gpKpFxboprGAOaCWZp0D5NiB4%2FrejvyM3u9iLkh9NPhtU0jihny0MYiWlxT6Tg4yiHr%2FQ5d6a1DEZvg8L6m9A6ckb0%2Bn69vkrnDd1zoE%3D", 
                     rsaSha1Signature);
             }
+            #endif
         }
     }
 }

@@ -11,6 +11,7 @@ namespace OAuth.Tests
 
         class GetSignatureTest : OAuthToolsTest
         {
+            #if NETFRAMEWORK
             [Test]
             public void ThrowsForRsaSha1SignatureWithoutSupportOfDotNetStandard20()
             {
@@ -18,6 +19,7 @@ namespace OAuth.Tests
 
                 Assert.Throws<NotImplementedException>(GetRsaSha1Signature);
             }
+            #endif
 
             [Test]
             public void DoesNotThrowForHmacSha1WithoutSupportOfDotNetStandard20()
