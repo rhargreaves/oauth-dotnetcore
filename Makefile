@@ -13,7 +13,7 @@ build:
 		-p:Version=$(VERSION) \
 		$(CSPROJ)
 
-local-pack:
+pack:
 	FrameworkPathOverride=/Library/Frameworks/Mono.framework/Versions/Current/lib/mono/4.5 \
 	dotnet pack \
 		-c Release \
@@ -26,9 +26,9 @@ test: build
 		tests/OAuth.UnitTests/OAuth.UnitTests.csproj 
 
 nuget-push: pack
-	$(DOTNET) nuget push \
-		src/OAuth.DotNetCore/bin/Release/OAuth.DotNetCore.$(VERSION).nupkg \
+	dotnet nuget push \
+		src/OAuth/bin/Release/OAuth.DotNetCore.$(VERSION).nupkg \
 		-k $(NUGET_KEY) \
 		-s nuget.org
 
-.PHONY: build pack nuget-push
+.PHONY: build test pack nuget-push
