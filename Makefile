@@ -5,16 +5,19 @@ DOTNET=docker run \
 	mcr.microsoft.com/dotnet/core/sdk:2.2-alpine \
 	dotnet
 CSPROJ=src/OAuth/OAuth.csproj
-VERSION=2.2.0
+VERSION=3.0.0
 
 build:
 	$(DOTNET) build \
 		-f netstandard2.0 \
+		-p:Version=$(VERSION) \
 		$(CSPROJ)
 
-pack: build
-	$(DOTNET) pack \
+local-pack:
+	FrameworkPathOverride=/Library/Frameworks/Mono.framework/Versions/Current/lib/mono/4.5 \
+	dotnet pack \
 		-c Release \
+		-p:Version=$(VERSION) \
 		$(CSPROJ)
 
 test: build
