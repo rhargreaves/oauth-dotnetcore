@@ -16,7 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\src\OAuth.DotNetCore\OAuth.DotNetCore.csproj" />
+      <ProjectReference Include="..\..\src\OAuth\OAuth.csproj" />
     </ItemGroup>
 
 </Project>

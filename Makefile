@@ -4,16 +4,20 @@ DOTNET=docker run \
 	-it \
 	mcr.microsoft.com/dotnet/core/sdk:2.2-alpine \
 	dotnet
-CSPROJ=src/OAuth.DotNetCore/OAuth.DotNetCore.csproj
+CSPROJ=src/OAuth/OAuth.csproj
 VERSION=2.2.0
 
 build:
-	$(DOTNET) build $(CSPROJ)
+	$(DOTNET) build \
+		-f netstandard2.0 \
+		$(CSPROJ)
 
 pack: build
-	$(DOTNET) pack $(CSPROJ) -c Release
+	$(DOTNET) pack \
+		-c Release \
+		$(CSPROJ)
 
-test:
+test: build
 	$(DOTNET) test \
 		-f netcoreapp2.2 \
 		tests/OAuth.UnitTests/OAuth.UnitTests.csproj 
