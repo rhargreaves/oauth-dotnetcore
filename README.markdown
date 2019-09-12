@@ -138,7 +138,7 @@ If the application needs to make a request without the `oauth_token` set, but in
 
 ```csharp
 var client = OAuthRequest.ForProtectedResource("GET", "CONSUMER_KEY",
-    "CONSUMER_SECRET", string.Empty, null, OAuth.OAuthSignatureMethod.RsaSha1);
+    "CONSUMER_SECRET", null, null, OAuth.OAuthSignatureMethod.RsaSha1);
 var requestUrl = 
     $"https://SOME_BASE_URL/jira/rest/api/2/search?jql=assignee=SOME_USER_ID&user_id=SOME_USER_ID";
 client.RequestUrl = requestUrl;
