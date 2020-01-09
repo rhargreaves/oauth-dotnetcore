@@ -65,7 +65,7 @@ OAuthRequest client = new OAuthRequest
 
 // Creating a new instance with a helper method
 OAuthRequest client = OAuthRequest.ForRequestToken("CONSUMER_KEY", "CONSUMER_SECRET");
-client.RequestUrl = "http://twitter.com/oauth/request_token";
+client.RequestUrl = "https://twitter.com/oauth/request_token";
 ```
 
 Once you have an OAuthRequest instance, you can obtain either the appropriate HTTP Authorization
