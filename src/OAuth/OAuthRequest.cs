@@ -272,7 +272,7 @@ namespace OAuth
 
         public static OAuthRequest ForRequestToken(string consumerKey, string consumerSecret, string callbackUrl, OAuthSignatureMethod oAuthSignatureMethod = OAuthSignatureMethod.HmacSha1)
         {
-            var credentials = ForRequestToken(consumerKey, consumerSecret, null, oAuthSignatureMethod: oAuthSignatureMethod);
+            var credentials = ForRequestToken(consumerKey, consumerSecret, oAuthSignatureMethod);
             credentials.CallbackUrl = callbackUrl;
             return credentials;
         }
