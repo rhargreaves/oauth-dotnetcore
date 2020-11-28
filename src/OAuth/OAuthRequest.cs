@@ -512,6 +512,10 @@ namespace OAuth
         {
             var value = signatureMethod.ToString().ToUpper();
             var shaIndex = value.IndexOf("SHA1");
+            if (shaIndex == -1)
+            {
+                shaIndex = value.IndexOf("SHA256");
+            }
             return shaIndex > -1 ? value.Insert(shaIndex, "-") : value;
         }
 
