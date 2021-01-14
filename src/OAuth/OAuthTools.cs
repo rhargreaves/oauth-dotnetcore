@@ -26,6 +26,7 @@ namespace OAuth
         private const string Lower = "abcdefghijklmnopqrstuvwxyz";
         private const string Unreserved = AlphaNumeric + "-._~";
         private const string Upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        private const int EscapeDataStringCharLimit = 32765;
 
         private static readonly Random _random;
         private static readonly object _randomLock = new object();
@@ -114,13 +115,32 @@ namespace OAuth
         /// <seealso href="http://oauth.net/core/1.0#encoding_parameters" />
         public static string UrlEncodeRelaxed(string value)
         {
-            var escaped = Uri.EscapeDataString(value);
+            var escaped = EscapeDataString(value);
 
             // LinkedIn users have problems because it requires escaping brackets
             escaped = escaped.Replace("(", PercentEncode("("))
                              .Replace(")", PercentEncode(")"));
 
             return escaped;
+        }
+
+        /// <summary>
+        /// Orginal Uri.EscapeDataString() support url size up to 32765 for .NET < 4.5 and
+        /// 65519 for .NET >= 4.5 thats why we have to escape in chunks
+        /// </summary>
+        /// <param name="stringToEscape"></param>
+        /// <returns></returns>
+        private static string EscapeDataString(string stringToEscape)
+        {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < stringToEscape.Length; i += EscapeDataStringCharLimit)
+            {
+                int chunkLength = Math.Min(stringToEscape.Length - i, EscapeDataStringCharLimit);
+                string escapedChunk = Uri.EscapeDataString(stringToEscape.Substring(i, chunkLength));
+                Console.WriteLine($"Size: {chunkLength}, Chunk: {escapedChunk.Substring(0, 10)}");
+                sb.Append(escapedChunk);
+            }
+            return sb.ToString();
         }
 
         private static string PercentEncode(string s)
